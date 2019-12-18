@@ -43,7 +43,7 @@ public class Movie implements Serializable {
 	private Store store;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STORE_ID", referencedColumnName = "STORE_ID", updatable = false, insertable = false)
+	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", updatable = false, insertable = false)
 	private User user;
 
 }
