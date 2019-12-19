@@ -12,7 +12,7 @@ public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private Integer useId;
 
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres")
@@ -27,18 +27,18 @@ public class UserDTO implements Serializable {
 	private String password;
 
 	public UserDTO(User userObj) {
-		id = userObj.getUserId();
+		useId = userObj.getUserId();
 		email = userObj.getEmail();
 		name = userObj.getName();
 		password = userObj.getPassword();
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getUseId() {
+		return useId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUseId(Integer useId) {
+		this.useId = useId;
 	}
 
 	public String getEmail() {

@@ -13,9 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table(name = "STORE")
 public class Store implements Serializable {
@@ -32,6 +29,53 @@ public class Store implements Serializable {
 
 	public Store() {
 		movies = new ArrayList<>();
+	}
+
+	public Integer getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(Integer storeId) {
+		this.storeId = storeId;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((movies == null) ? 0 : movies.hashCode());
+		result = prime * result + ((storeId == null) ? 0 : storeId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Store other = (Store) obj;
+		if (movies == null) {
+			if (other.movies != null)
+				return false;
+		} else if (!movies.equals(other.movies))
+			return false;
+		if (storeId == null) {
+			if (other.storeId != null)
+				return false;
+		} else if (!storeId.equals(other.storeId))
+			return false;
+		return true;
 	}
 
 }
