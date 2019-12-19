@@ -1,8 +1,8 @@
-package com.all.resourcers;
+package com.all.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserResource {
+public class UserController {
 
 }
