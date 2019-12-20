@@ -39,6 +39,15 @@ public class User implements Serializable {
 		movies = new ArrayList<>();
 	}
 
+	public User(Integer userId, String email, String name, String password, List<Movie> movies) {
+		super();
+		this.userId = userId;
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.movies = movies;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

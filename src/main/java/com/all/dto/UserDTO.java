@@ -1,11 +1,13 @@
 package com.all.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.all.model.Movie;
 import com.all.model.User;
 
 public class UserDTO implements Serializable {
@@ -13,6 +15,7 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer userId;
+	private List<Movie> movies;
 
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres")
@@ -31,6 +34,7 @@ public class UserDTO implements Serializable {
 		email = userObj.getEmail();
 		name = userObj.getName();
 		password = userObj.getPassword();
+		movies.addAll(userObj.getMovies());
 	}
 
 	public Integer getUserId() {
@@ -39,6 +43,14 @@ public class UserDTO implements Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
 	}
 
 	public String getEmail() {
