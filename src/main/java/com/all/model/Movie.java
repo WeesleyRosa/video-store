@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,11 +16,12 @@ public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "MOVIE_ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer movieId;
+//	@Id
+//	@Column(name = "MOVIE_ID")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Integer movieId;
 
+	@Id
 	@Column(name = "TITLE", length = 300, nullable = false)
 	private String title;
 
@@ -42,13 +41,15 @@ public class Movie implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", updatable = false, insertable = false)
 	private User user;
+	
+	
 
-	public Integer getMovieId() {
-		return movieId;
-	}
-
-	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
+	public Movie(String title, String director, String storeId, String userId) {
+		super();
+		this.title = title;
+		this.director = director;
+		this.storeId = storeId;
+		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -104,7 +105,6 @@ public class Movie implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((director == null) ? 0 : director.hashCode());
-		result = prime * result + ((movieId == null) ? 0 : movieId.hashCode());
 		result = prime * result + ((store == null) ? 0 : store.hashCode());
 		result = prime * result + ((storeId == null) ? 0 : storeId.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -126,11 +126,6 @@ public class Movie implements Serializable {
 			if (other.director != null)
 				return false;
 		} else if (!director.equals(other.director))
-			return false;
-		if (movieId == null) {
-			if (other.movieId != null)
-				return false;
-		} else if (!movieId.equals(other.movieId))
 			return false;
 		if (store == null) {
 			if (other.store != null)

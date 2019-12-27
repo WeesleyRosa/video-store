@@ -3,10 +3,15 @@ package com.all.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.all.dto.MovieDTO;
@@ -25,6 +30,21 @@ public class MovieController {
 		List<Movie> listMovies = movie.findAllAvailable();
 		List<MovieDTO> movieDto = listMovies.stream().map(obj -> new MovieDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(movieDto);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<MovieDTO> findById(@RequestParam(value = "title") String title) {
+		Movie selectedMovie = movie.getById(title);
+		MovieDTO movieDto = new MovieDTO(selectedMovie);
+		return ResponseEntity.ok().body(movieDto);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody MovieDTO objDto, @PathVariable String title) {
+		Movie obj = movie.fromDTO(objDto);
+		obj.setTitle(title);
+		//obj = movie.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }

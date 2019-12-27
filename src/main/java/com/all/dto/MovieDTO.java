@@ -12,7 +12,7 @@ public class MovieDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer movieId;
+	//private Integer movieId;
 
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres")
@@ -25,23 +25,36 @@ public class MovieDTO implements Serializable {
 	private String storeId;
 
 	private String userId;
+	
+	
+
+	public MovieDTO(
+			@NotEmpty(message = "Preenchimento obrigatório") @Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres") String title,
+			@NotEmpty(message = "Preenchimento obrigatório") @Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres") String director,
+			String storeId, String userId) {
+		super();
+		this.title = title;
+		this.director = director;
+		this.storeId = storeId;
+		this.userId = userId;
+	}
 
 	public MovieDTO(Movie movieObj) {
 		super();
-		movieId = movieObj.getMovieId();
+		//movieId = movieObj.getMovieId();
 		title = movieObj.getTitle();
 		director = movieObj.getDirector();
 		storeId = movieObj.getStoreId();
 		userId = movieObj.getUserId();
 	}
 
-	public Integer getMovieId() {
-		return movieId;
-	}
-
-	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
-	}
+//	public Integer getMovieId() {
+//		return movieId;
+//	}
+//
+//	public void setMovieId(Integer movieId) {
+//		this.movieId = movieId;
+//	}
 
 	public String getTitle() {
 		return title;
