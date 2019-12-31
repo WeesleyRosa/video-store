@@ -43,7 +43,7 @@ public class MovieController {
 	public ResponseEntity<Void> update(@Valid @RequestBody MovieDTO objDto, @PathVariable String title) {
 		Movie obj = movie.fromDTO(objDto);
 		obj.setTitle(title);
-		//obj = movie.update(obj);
+		obj = movie.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 
