@@ -26,7 +26,7 @@ public class UserDTO implements Serializable {
 	private String name;
 
 	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min = 6, max = 20, message = "O tamanho da senha deve ser entre 6 e 20 caracteres")
+	@Length(min = 6, max = 250, message = "O tamanho da senha deve ser entre 6 e 250 caracteres")
 	private String password;
 	
 	public UserDTO() {
@@ -38,7 +38,7 @@ public class UserDTO implements Serializable {
 		email = userObj.getEmail();
 		name = userObj.getName();
 		password = userObj.getPassword();
-		movies.addAll(userObj.getMovies());
+		//movies.addAll(userObj.getMovies());
 	}
 
 	public Integer getUserId() {

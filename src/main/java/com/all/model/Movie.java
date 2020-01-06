@@ -11,17 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "MOVIE")
 public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-//	@Id
-//	@Column(name = "MOVIE_ID")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Integer movieId;
 
 	@Id
 	@Column(name = "TITLE", length = 300, nullable = false)
@@ -38,15 +34,18 @@ public class Movie implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "STORE_ID", referencedColumnName = "STORE_ID", updatable = false, insertable = false)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private Store store;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", updatable = false, insertable = false)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private User user;
-	
-	public Movie(){}
+
+	public Movie() {
+	}
 
 	public Movie(String title, String director, Integer storeId, Integer userId) {
 		super();

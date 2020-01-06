@@ -27,7 +27,7 @@ public class Store implements Serializable {
 	private Integer storeId;
 
 	@OneToMany(mappedBy = "store", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JsonManagedReference
+	//@JsonManagedReference
 	private List<Movie> movies;
 
 	public Store(Integer storeId) {

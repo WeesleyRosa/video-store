@@ -34,11 +34,11 @@ public class User implements Serializable {
 	private String name;
 
 	@JsonIgnore
-	@Column(name = "PASSWORD", length = 20, nullable = false)
+	@Column(name = "PASSWORD", length = 250, nullable = false)
 	private String password;
 
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JsonManagedReference
+	//@JsonManagedReference
 	private List<Movie> movies;
 
 	public User() {

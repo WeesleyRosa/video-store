@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// CAMINHOS ABERTOS
 	private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
 
-	private static final String[] PUBLIC_MATCHERS_GET = { "/metadata/**" };
+	private static final String[] PUBLIC_MATCHERS_GET = { "/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -40,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Desabilita proteção CSRF pois o sistema é stateless
 		http.cors().and().csrf().disable();
 		// libera x requests
-		http.authorizeRequests().antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS_GET).permitAll()
 				.antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
