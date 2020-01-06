@@ -20,8 +20,9 @@ public class MovieService {
 		return movie.findByUserIdIsNull();
 	}
 
-	public Movie getById(String title) {
-		return movie.findByTitle(title);
+	public Movie findByTitle(String title) {
+		Movie movieObj = movie.findByTitle(title);
+		return movieObj;
 	}
 
 	public Movie fromDTO(MovieDTO objDto) {

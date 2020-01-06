@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -26,9 +25,6 @@ import com.all.service.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private Environment env;
-
-	@Autowired
 	private UserService userServc;
 
 	// CAMINHOS ABERTOS
@@ -36,22 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String[] PUBLIC_MATCHERS_GET = { "/metadata/**" };
 
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		// pegando os profiles ativos.
-//		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
-//			http.headers().frameOptions().disable();
-//		}
-//		http.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
-//	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// pegando os profiles ativos.
 		http.headers().frameOptions().disable();
 
 		// Desabilita proteção CSRF pois o sistema é stateless
-		 http.cors().and().csrf().disable();
+		http.cors().and().csrf().disable();
 		// libera x requests
 		http.authorizeRequests().antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 				.antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();

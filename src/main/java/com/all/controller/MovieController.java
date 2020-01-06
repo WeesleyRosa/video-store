@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.all.dto.MovieDTO;
@@ -32,14 +31,26 @@ public class MovieController {
 		return ResponseEntity.ok().body(movieDto);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<MovieDTO> findById(@RequestParam(value = "title") String title) {
-		Movie selectedMovie = movie.getById(title);
-		MovieDTO movieDto = new MovieDTO(selectedMovie);
-		return ResponseEntity.ok().body(movieDto);
+	@RequestMapping(value = "/{title}", method = RequestMethod.GET)
+	public ResponseEntity<Movie> findById(@PathVariable String title) {
+		Movie obj = movie.findByTitle(title);
+		return ResponseEntity.ok().body(obj);
 	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+
+//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//	// @ResponseBody
+//	public String method7(@PathVariable("id") String id) {
+//		return "method7 with id=" + id;
+//	}
+
+//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//	public ResponseEntity<MovieDTO> findById(@RequestParam(value = "title") String title) {
+//		Movie selectedMovie = movie.getById(title);
+//		MovieDTO movieDto = new MovieDTO(selectedMovie);
+//		return ResponseEntity.ok().body(movieDto);
+//	}
+
+	@RequestMapping(value = "/{title}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody MovieDTO objDto, @PathVariable String title) {
 		Movie obj = movie.fromDTO(objDto);
 		obj.setTitle(title);

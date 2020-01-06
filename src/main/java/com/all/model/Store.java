@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "STORE")
 public class Store implements Serializable {
@@ -25,7 +27,13 @@ public class Store implements Serializable {
 	private Integer storeId;
 
 	@OneToMany(mappedBy = "store", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonManagedReference
 	private List<Movie> movies;
+
+	public Store(Integer storeId) {
+		super();
+		this.storeId = storeId;
+	}
 
 	public Store() {
 		movies = new ArrayList<>();

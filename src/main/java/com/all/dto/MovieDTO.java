@@ -22,16 +22,14 @@ public class MovieDTO implements Serializable {
 	@Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres")
 	private String director;
 
-	private String storeId;
+	private Integer storeId;
 
-	private String userId;
-	
-	
+	private Integer userId;
 
 	public MovieDTO(
 			@NotEmpty(message = "Preenchimento obrigatório") @Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres") String title,
 			@NotEmpty(message = "Preenchimento obrigatório") @Length(min = 10, max = 100, message = "O tamanho do email deve ser entre 10 e 100 caracteres") String director,
-			String storeId, String userId) {
+			Integer storeId, Integer userId) {
 		super();
 		this.title = title;
 		this.director = director;
@@ -47,14 +45,6 @@ public class MovieDTO implements Serializable {
 		storeId = movieObj.getStoreId();
 		userId = movieObj.getUserId();
 	}
-
-//	public Integer getMovieId() {
-//		return movieId;
-//	}
-//
-//	public void setMovieId(Integer movieId) {
-//		this.movieId = movieId;
-//	}
 
 	public String getTitle() {
 		return title;
@@ -72,20 +62,30 @@ public class MovieDTO implements Serializable {
 		this.director = director;
 	}
 
-	public String getStoreId() {
+	public Integer getStoreId() {
 		return storeId;
 	}
 
-	public void setStoreId(String storeId) {
+	public void setStoreId(Integer storeId) {
 		this.storeId = storeId;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+
+//	public Integer getMovieId() {
+//		return movieId;
+//	}
+//
+//	public void setMovieId(Integer movieId) {
+//		this.movieId = movieId;
+//	}
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "USERS")
@@ -35,7 +37,8 @@ public class User implements Serializable {
 	@Column(name = "PASSWORD", length = 20, nullable = false)
 	private String password;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JsonManagedReference
 	private List<Movie> movies;
 
 	public User() {

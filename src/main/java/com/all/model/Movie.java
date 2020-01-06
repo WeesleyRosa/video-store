@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "MOVIE")
 public class Movie implements Serializable {
@@ -29,22 +31,24 @@ public class Movie implements Serializable {
 	private String director;
 
 	@Column(name = "STORE_ID", nullable = false)
-	private String storeId;
+	private Integer storeId;
 
 	@Column(name = "USER_ID")
-	private String userId;
+	private Integer userId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "STORE_ID", referencedColumnName = "STORE_ID", updatable = false, insertable = false)
+	@JsonBackReference
 	private Store store;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", updatable = false, insertable = false)
+	@JsonBackReference
 	private User user;
 	
-	
+	public Movie(){}
 
-	public Movie(String title, String director, String storeId, String userId) {
+	public Movie(String title, String director, Integer storeId, Integer userId) {
 		super();
 		this.title = title;
 		this.director = director;
@@ -68,19 +72,19 @@ public class Movie implements Serializable {
 		this.director = director;
 	}
 
-	public String getStoreId() {
+	public Integer getStoreId() {
 		return storeId;
 	}
 
-	public void setStoreId(String storeId) {
+	public void setStoreId(Integer storeId) {
 		this.storeId = storeId;
 	}
 
-	public String getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
