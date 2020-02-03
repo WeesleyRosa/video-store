@@ -68,6 +68,7 @@ public class VideoStoreApplication implements CommandLineRunner {
 		Movie movie13 = new Movie("Filme 13 algum genero", "Diretor do filme 13", 10, 4);
 		Movie movie14 = new Movie("Filme 14 algum genero", "Diretor do filme 14", 11, null);
 		Movie movie15 = new Movie("Filme 15 algum genero", "Diretor do filme 15", 12, 1);
+		Movie movie16 = new Movie("Filme 16 algum genero", "Diretor do filme 16", 12, 1);
 
 		userRepo.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6, user7));
 		storeRepo.saveAll(Arrays.asList(store1, store2, store3, store4, store5, store6, store7, store8, store9, store10,
